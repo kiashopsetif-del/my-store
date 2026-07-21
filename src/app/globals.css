@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", "Tajawal", Georgia, serif;
+  --color-ink: #050505;
+  --color-surface: #0e0e0f;
+  --color-surface-2: #161618;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #050505;
+    color: #f4f4f5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--accent, #d4af37);
+    color: #050505;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2c;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent, #d4af37);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+.text-shine {
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+/* Reusable bits */
+.gold-text {
+  background: linear-gradient(
+    90deg,
+    #f5d77a 0%,
+    var(--accent, #d4af37) 40%,
+    #8a6d2b 70%,
+    var(--accent, #d4af37) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.card-hover {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease, box-shadow 0.45s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent, #d4af37) 55%, transparent);
+  box-shadow: 0 24px 60px -20px color-mix(in srgb, var(--accent, #d4af37) 35%, transparent);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
